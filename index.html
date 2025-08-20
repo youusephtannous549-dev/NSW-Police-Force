@@ -3,225 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NSW Police News</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #000;
-      background: #fff;
-    }
-
-    /* Top Info Bar */
-    .top-bar {
-      background: #00174F;
-      color: white;
-      font-size: 12px;
-      padding: 6px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .top-bar span {
-      margin-right: 20px;
-      font-weight: 600;
-    }
-
-    /* Logo and Search Row */
-    .logo-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 20px;
-      border-bottom: 1px solid #ccc;
-    }
-
-    .logos img {
-      height: 48px;
-      margin-right: 20px;
-    }
-
-    .search-contact {
-      display: flex;
-      align-items: center;
-    }
-
-    .search-contact input {
-      padding: 6px 8px;
-      font-size: 14px;
-      border: 1px solid #aaa;
-      margin-right: 10px;
-      border-radius: 2px;
-    }
-
-    .search-contact button {
-      background: #FFD200;
-      border: none;
-      padding: 8px 15px;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 2px;
-    }
-
-    /* Navigation */
-    nav {
-      background: #00174F;
-      padding: 12px 20px;
-    }
-
-    nav a {
-      color: white;
-      margin-right: 25px;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* Main Layout */
-    .container {
-      display: flex;
-      max-width: 1100px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
-
-    .content {
-      flex: 3;
-    }
-
-    .content h1 {
-      font-size: 22px;
-      color: #00174F;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    .content .date {
-      font-size: 13px;
-      color: #555;
-      margin-bottom: 25px;
-    }
-
-    .content p {
-      margin-bottom: 18px;
-      line-height: 1.6;
-      font-size: 15px;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      flex: 1;
-      margin-left: 40px;
-      font-size: 14px;
-    }
-
-    .sidebar h3 {
-      font-size: 14px;
-      margin-bottom: 10px;
-      font-weight: bold;
-      color: #00174F;
-    }
-
-    .sidebar a {
-      color: #4B0082; /* exact purple */
-      text-decoration: underline;
-      font-size: 13px;
-    }
-
-    /* Footer */
-    footer {
-      background: #00174F;
-      color: white;
-      font-size: 12px;
-      padding: 25px 20px;
-      margin-top: 50px;
-    }
-
-    footer .links {
-      margin-bottom: 12px;
-    }
-
-    footer a {
-      color: white;
-      margin-right: 15px;
-      font-size: 12px;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <title>NSW Police Website Replica</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
   <!-- Top Bar -->
   <div class="top-bar">
-    <div>
-      <span>ALL EMERGENCIES Triple Zero (000)</span>
-      <span>ONLINE SERVICES Community Portal</span>
-      <span>NON-EMERGENCY 131 444</span>
-      <span>CRIME STOPPERS 1800 333 000</span>
-    </div>
+    <span><strong>ALL EMERGENCIES</strong> Triple Zero (000)</span>
+    <span><strong>ONLINE SERVICES</strong> Community Portal</span>
+    <span><strong>NON-EMERGENCY</strong> 131 444</span>
+    <span><strong>CRIME STOPPERS</strong> 1800 333 000</span>
   </div>
 
-  <!-- Logo Row -->
-  <div class="logo-row">
-    <div class="logos">
-      <img src="https://www.police.nsw.gov.au/__data/assets/file/0006/336956/NSW-Police-Logo.png" alt="NSW Police Logo">
-      <img src="https://www.nsw.gov.au/themes/custom/nsw_gov/images/nsw-gov-logo.png" alt="NSW Gov Logo">
+  <!-- Header -->
+  <header class="header-row">
+    <div class="left-header">
+      <div class="logos">
+        <img src="nswpolice-logo.png" alt="NSW Police Logo">
+        <img src="nswgov-logo.png" alt="NSW Gov Logo">
+      </div>
+      <nav>
+        <a href="#">News</a>
+        <a href="#">Online Services</a>
+        <a href="#">Crime</a>
+        <a href="#">Community Safety</a>
+        <a href="#">Can You Help Us?</a>
+        <a href="#">About Us</a>
+        <a href="#">Recruitment</a>
+      </nav>
     </div>
+
     <div class="search-contact">
       <input type="text" placeholder="Search our site">
       <button>CONTACT US</button>
     </div>
-  </div>
+  </header>
 
-  <!-- Navigation -->
-  <nav>
-    <a href="#">NEWS</a>
-    <a href="#">ONLINE SERVICES</a>
-    <a href="#">CRIME</a>
-    <a href="#">COMMUNITY SAFETY</a>
-    <a href="#">CAN YOU HELP US?</a>
-    <a href="#">ABOUT US</a>
-    <a href="#">RECRUITMENT</a>
-  </nav>
-
-  <!-- Main Content -->
-  <div class="container">
-    <div class="content">
-      <h1>Missing group located safe - Catherine Hill Bay</h1>
-      <div class="date">Sunday, 17 August 2025 09:50:50 AM</div>
-
-      <p>Four women who were reported as possibly missing after they were seen stranded on rocks at Catherine Hill Bay have been located safe.</p>
-
-      <p>About 1.40pm (Saturday 16 August 2025), officers from Lake Macquarie Police District were called to rocks south of Catherine Hill Bay Beach, following reports four females were seen on the rocks about 1pm, before the tide came in and they could no longer be seen.</p>
-
-      <p>A search operation commenced, including local police, officers from Marine Area Command, and the Westpac helicopter; however, the group could not be located.</p>
-
-      <p>Following ongoing inquiries, including a public appeal for information, one of the four women contacted police and notified them that they were safe.</p>
-
+  <!-- Main Layout -->
+  <main class="main-layout">
+    <!-- Article -->
+    <article class="content">
+      <h2>Missing group located safe - Catherine Hill Bay</h2>
+      <p class="date">Sunday, 17 August 2025 09:50:50 AM</p>
+      <p>
+        Four women who were reported as possibly missing after they were seen stranded on rocks at
+        Catherine Hill Bay have been located safe.
+      </p>
+      <p>
+        About 1.40pm (Saturday 16 August 2025), officers from Lake Macquarie Police District were called
+        to rocks south of Catherine Hill Bay Beach, following reports four females were seen on the
+        rocks about 1pm, before the tide came in and they could no longer be seen.
+      </p>
+      <p>
+        A search operation commenced, including local police, officers from Marine Area Command, and
+        the Westpac helicopter; however, the group could not be located.
+      </p>
+      <p>
+        Following ongoing inquiries, including a public appeal for information, one of the four women
+        contacted police and notified them that they were safe.
+      </p>
       <p>Police would like to thank the public and media for their assistance.</p>
-    </div>
+    </article>
 
-    <div class="sidebar">
-      <h3>Share this</h3>
-      <p>📘 ✉️ 🔗</p>
-      <h3>Latest News</h3>
-      <a href="#">View more articles</a>
-    </div>
-  </div>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="share-box">
+        <h3>Share</h3>
+        <div class="icons">
+          <img src="icon-facebook.png" alt="Facebook">
+          <img src="icon-twitter.png" alt="Twitter">
+          <img src="icon-email.png" alt="Email">
+        </div>
+      </div>
+
+      <div class="latest-news">
+        <h3>Latest News</h3>
+        <ul>
+          <li><a href="#">Police operation concludes - Sydney CBD</a></li>
+          <li><a href="#">Appeal to locate missing teen - Newcastle</a></li>
+          <li><a href="#">Man charged following pursuit - Western Sydney</a></li>
+          <li><a href="#">Community safety campaign launches - Statewide</a></li>
+        </ul>
+      </div>
+    </aside>
+  </main>
 
   <!-- Footer -->
   <footer>
-    <div class="links">
+    <div class="footer-links">
       <a href="#">News</a>
       <a href="#">Community Safety</a>
       <a href="#">Contact Us</a>
@@ -230,12 +99,11 @@
       <a href="#">About Us</a>
       <a href="#">Crime</a>
     </div>
-    <div>
-      NSW Police Force HQ, 1 Charles Street, Parramatta, NSW 2150<br>
-      Postal Address: Locked Bag 5102, Parramatta, NSW 2124<br>
+    <p>
+      NSW Police Force HQ, 1 Charles Street, Parramatta, NSW 2150 <br>
+      Postal Address: Locked Bag 5102, Parramatta, NSW 2124 <br>
       © Government of New South Wales. All rights reserved.
-    </div>
+    </p>
   </footer>
-
 </body>
 </html>
