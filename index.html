@@ -2,216 +2,332 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>NSW Police Force - Latest News</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Missing group located safe - Catherine Hill Bay</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff;
+      font-family: 'Roboto', Arial, sans-serif;
       color: #222;
+      background: #fff;
     }
-    /* Top strip */
-    .top-bar {
-      background: #001b52;
+
+    /* Top bar */
+    .topbar {
+      background: #0b2857;
       color: white;
       font-size: 14px;
       display: flex;
-      justify-content: space-around;
-      padding: 6px 10px;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 6px 30px;
     }
-    .top-bar div {
-      margin: 0 10px;
+    .topbar a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
     }
+    .topbar .btn {
+      background: #fbc02d;
+      color: #000;
+      padding: 6px 14px;
+      border-radius: 3px;
+      margin-left: 15px;
+      font-weight: bold;
+    }
+
     /* Header */
-    header {
-      background: white;
-      padding: 10px 20px;
+    .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 2px solid #001b52;
+      padding: 12px 30px;
+      flex-wrap: wrap;
     }
-    header img {
-      height: 60px;
+    .header img {
+      height: 70px;
     }
-    header .right {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
-    header button {
-      background: #f0c330;
-      border: none;
-      padding: 8px 14px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    /* Nav menu */
+
+    /* Navigation */
     nav {
-      background: #001b52;
+      background: #0b2857;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      flex-wrap: wrap;
     }
-    nav a {
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
       color: white;
       text-decoration: none;
       padding: 14px 18px;
-      font-weight: bold;
+      display: block;
+      font-weight: 500;
+      font-size: 15px;
+      text-transform: uppercase;
     }
-    nav a:hover {
-      background: #003080;
+    .nav-links a:hover {
+      background: #163873;
     }
-    /* Hero / Banner */
-    .banner {
-      background: url('https://via.placeholder.com/1600x200') no-repeat center;
-      background-size: cover;
-      height: 200px;
-    }
-    /* Main container */
-    .container {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 0 20px;
+
+    /* Search */
+    .search {
       display: flex;
-      gap: 30px;
+      align-items: center;
+      margin-left: auto;
     }
-    /* Article */
+    .search input {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 3px 0 0 3px;
+      outline: none;
+    }
+    .search button {
+      background: #fbc02d;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 0 3px 3px 0;
+      cursor: pointer;
+    }
+
+    /* Emergency bar */
+    .emergency-bar {
+      background: #142d63;
+      color: white;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      padding: 10px;
+      font-size: 14px;
+      text-align: center;
+    }
+    .emergency-bar strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    /* Banner */
+    .banner {
+      background: #0b2857;
+      color: white;
+      text-align: center;
+      padding: 70px 20px;
+      font-size: 40px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* Main Content */
+    .content {
+      display: flex;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
     .article {
       flex: 3;
     }
     .article h1 {
-      color: #001b52;
-      font-size: 26px;
-      margin-bottom: 5px;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
-    .date {
+    .article time {
+      color: #666;
       font-size: 14px;
-      color: gray;
+      display: block;
       margin-bottom: 20px;
     }
     .article p {
-      line-height: 1.6;
-      margin-bottom: 15px;
+      line-height: 1.7;
+      margin-bottom: 18px;
+      font-size: 16px;
     }
+
     /* Sidebar */
     .sidebar {
       flex: 1;
-      border-left: 1px solid #ccc;
-      padding-left: 20px;
+      margin-left: 40px;
     }
     .sidebar h3 {
-      font-size: 16px;
-      margin-bottom: 10px;
-      color: #001b52;
+      font-size: 18px;
+      border-bottom: 3px solid #ddd;
+      padding-bottom: 6px;
+      margin-bottom: 16px;
     }
-    .share-icons a {
-      display: inline-block;
-      margin-right: 10px;
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sidebar ul li {
+      margin-bottom: 14px;
+    }
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #0b2857;
+      font-weight: 500;
+    }
+    .sidebar ul li a:hover {
+      text-decoration: underline;
+    }
+
+    /* Social Share */
+    .share {
+      margin: 25px 0;
+    }
+    .share strong {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .share a {
+      margin-right: 12px;
       font-size: 20px;
       text-decoration: none;
-      color: #001b52;
+      color: #0b2857;
     }
+    .share a:hover {
+      color: #163873;
+    }
+
     /* Footer */
     footer {
-      background: #001b52;
+      background: #0b2857;
       color: white;
-      padding: 30px 20px;
-      margin-top: 40px;
+      padding: 40px 20px;
+      font-size: 14px;
     }
     footer .links {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      margin-bottom: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
     }
-    footer a {
+    footer .links a {
       color: white;
       text-decoration: none;
-      font-size: 14px;
+      margin: 0 14px 10px;
+      font-weight: 500;
     }
-    footer p {
-      margin: 5px 0;
-      font-size: 13px;
+    footer .links a:hover {
+      text-decoration: underline;
+    }
+    footer .address {
+      text-align: center;
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
 
-<!-- Top info bar -->
-<div class="top-bar">
-  <div><strong>ALL EMERGENCIES</strong> Triple Zero (000)</div>
-  <div><strong>ONLINE SERVICES</strong> Community Portal</div>
-  <div><strong>NON-EMERGENCY</strong> 131 444</div>
-  <div><strong>CRIME STOPPERS</strong> 1800 333 000</div>
-</div>
-
-<!-- Header -->
-<header>
-  <div>
-    <img src="https://via.placeholder.com/100x60?text=NSWPF" alt="NSW Police Logo">
-    <img src="https://via.placeholder.com/120x60?text=NSW+Gov" alt="NSW Gov Logo">
-  </div>
-  <div class="right">
-    <input type="text" placeholder="Search our site">
-    <button>CONTACT US</button>
-  </div>
-</header>
-
-<!-- Navigation -->
-<nav>
-  <a href="#">NEWS</a>
-  <a href="#">ONLINE SERVICES</a>
-  <a href="#">CRIME</a>
-  <a href="#">COMMUNITY SAFETY</a>
-  <a href="#">CAN YOU HELP US?</a>
-  <a href="#">ABOUT US</a>
-  <a href="#">RECRUITMENT</a>
-</nav>
-
-<!-- Banner -->
-<div class="banner"></div>
-
-<!-- Content -->
-<div class="container">
-  <div class="article">
-    <h1>Missing group located safe - Catherine Hill Bay</h1>
-    <div class="date">Sunday, 17 August 2025 09:50:50 AM</div>
-    <p>Four women who were reported as possibly missing after they were seen stranded on rocks at Catherine Hill Bay have been located safe.</p>
-    <p>About 1.40pm (Saturday 16 August 2025), officers from Lake Macquarie Police District were called to rocks south of Catherine Hill Bay Beach, following reports four females were seen on the rocks about 1pm, before the tide came in and they could no longer be seen.</p>
-    <p>A search operation commenced, including local police, officers from Marine Area Command, and the Westpac helicopter; however, the group could not be located.</p>
-    <p>Following ongoing inquiries, including a public appeal for information, one of the four women contacted police and notified them that they were safe.</p>
-    <p>Police would like to thank the public and media for their assistance.</p>
+  <!-- Topbar -->
+  <div class="topbar">
+    <a href="#"><i class="fa-solid fa-file-alt"></i> REPORT A CRIME ONLINE</a>
+    <a href="#" class="btn"><i class="fa-solid fa-phone"></i> CONTACT US</a>
   </div>
 
-  <div class="sidebar">
-    <h3>Share this</h3>
-    <div class="share-icons">
-      <a href="#">📘</a>
-      <a href="#">✉️</a>
-      <a href="#">🔗</a>
-      <a href="#">🐦</a>
+  <!-- Header -->
+  <div class="header">
+    <img src="https://upload.wikimedia.org/wikipedia/en/7/78/New_South_Wales_Police_Force_logo.png" alt="NSW Police Force Logo">
+    <img src="https://www.nsw.gov.au/sites/default/files/styles/og_image/public/2020-07/NSW-Government-logo.png" alt="NSW Government Logo" height="70">
+  </div>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-links">
+      <a href="#">News</a>
+      <a href="#">Online Services</a>
+      <a href="#">Crime</a>
+      <a href="#">Community Safety</a>
+      <a href="#">Can You Help Us?</a>
+      <a href="#">About Us</a>
+      <a href="#">Recruitment</a>
     </div>
-    <h3 style="margin-top:30px;">Latest News</h3>
-    <p><a href="#">View more articles</a></p>
-  </div>
-</div>
+    <div class="search">
+      <input type="text" placeholder="Search...">
+      <button><i class="fa fa-search"></i></button>
+    </div>
+  </nav>
 
-<!-- Footer -->
-<footer>
-  <div class="links">
-    <a href="#">News</a>
-    <a href="#">Community Safety</a>
-    <a href="#">Contact Us</a>
-    <a href="#">Recruitment</a>
-    <a href="#">Online Services</a>
-    <a href="#">About Us</a>
-    <a href="#">Crime</a>
+  <!-- Emergency Bar -->
+  <div class="emergency-bar">
+    <div><strong>Triple Zero (000)</strong> ALL EMERGENCIES</div>
+    <div><strong>Community Portal</strong> ONLINE SERVICES</div>
+    <div><strong>131 444</strong> NON-EMERGENCY</div>
+    <div><strong>1800 333 000</strong> CRIME STOPPERS</div>
   </div>
-  <p>NSW Police Force HQ, 1 Charles Street, Parramatta, NSW 2150</p>
-  <p>Postal Address: Locked Bag 5102, Parramatta, NSW 2124</p>
-  <p>&copy; Government of New South Wales. All rights reserved.</p>
-</footer>
+
+  <!-- Banner -->
+  <div class="banner">
+    Latest News
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+    <div class="article">
+      <h1>Missing group located safe - Catherine Hill Bay</h1>
+      <time>Sunday, 17 August 2025 09:50:50 AM</time>
+
+      <p>Four women who were reported as possibly missing after they were seen stranded on rocks at Catherine Hill Bay have been located safe.</p>
+      <p>About 1.40pm (Saturday 16 August 2025), officers from Lake Macquarie Police District were called to rocks south of Catherine Hill Bay Beach, following reports four females were seen on the rocks about 1pm, before the tide came in and they could no longer be seen.</p>
+      <p>A search operation commenced, including local police, officers from Marine Area Command, and the Westpac helicopter; however, the group could not be located.</p>
+      <p>Following ongoing inquiries, including a public appeal for information, one of the four women contacted police and notified them that they were safe.</p>
+      <p>Police would like to thank the public and media for their assistance.</p>
+
+      <div class="share">
+        <strong>Share this</strong>
+        <a href="#"><i class="fa-solid fa-link"></i></a>
+        <a href="#"><i class="fa-solid fa-envelope"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h3>Latest News</h3>
+      <ul>
+        <li><a href="#">Police appeal after robbery in Sydney’s Inner West</a></li>
+        <li><a href="#">Man charged following investigation into fraud scheme</a></li>
+        <li><a href="#">Search continues for missing bushwalker in Blue Mountains</a></li>
+        <li><a href="#">Community urged to stay vigilant after scam reports rise</a></li>
+        <li><a href="#">Two arrested after large drug seizure in Western Sydney</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="links">
+      <a href="#">News</a>
+      <a href="#">Community Safety</a>
+      <a href="#">Contact Us</a>
+      <a href="#">Recruitment</a>
+      <a href="#">Online Services</a>
+      <a href="#">Can You Help Us?</a>
+      <a href="#">About Us</a>
+      <a href="#">Crime</a>
+    </div>
+
+    <div class="address">
+      <p>NSW Police Force HQ<br>1 Charles Street, Parramatta, NSW 2150</p>
+      <p>Postal Address: Locked Bag 5102, Parramatta, NSW 2124</p>
+      <p>© Government of New South Wales. All rights reserved.</p>
+    </div>
+  </footer>
 
 </body>
 </html>
