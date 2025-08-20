@@ -1,313 +1,846 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>NSW Police – News Article (Replica)</title>
-<style>
-  :root{
-    --navy:#0b1f4f;           /* header/footer dark blue */
-    --navy-ink:#0e2a66;       /* headline / link blue */
-    --gold:#ffd200;           /* CONTACT US button */
-    --ink:#111;               /* body text */
-    --muted:#6b7280;          /* date grey */
-    --rule:#e5e7eb;           /* light divider */
-    --link:#1b3f90;           /* sidebar links */
-    --container:1260px;
-  }
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />   
 
-  /* reset */
-  *,*::before,*::after{box-sizing:border-box}
-  html,body{margin:0}
-  body{
-    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,system-ui,sans-serif;
-    color:var(--ink);
-    background:#fff;
-  }
-  a{color:inherit;text-decoration:none}
-  img{display:inline-block;vertical-align:middle}
+    <!--Google Tag Manager-->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RTSH70Q1PP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  /* utility top strip */
-  .topbar{
-    background:var(--navy);
-    color:#fff;
-    font:600 13px/1.2 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
-  }
-  .topbar .inner{
-    max-width:var(--container);
-    margin:0 auto;
-    padding:6px 20px;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:24px;
-  }
-  .topbar span{white-space:nowrap}
+  gtag('config', 'G-RTSH70Q1PP');
+</script>
+    <meta charset="utf-8" />
+    <title>Latest News - NSW Police Public Site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://www.police.nsw.gov.au/__data/assets/file/0011/469703/favicon_1.ico" type="image/x-icon" />
+    <!-- JS -->
+    
+<script src="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/js/vendor/modernizr.min.js"></script> 
 
-  /* header: logos + nav + search all aligned in one row */
-  header{
-    border-bottom:1px solid var(--rule);
-    background:#fff;
-  }
-  .header-inner{
-    max-width:var(--container);
-    margin:0 auto;
-    padding:12px 20px;
-    display:grid;
-    grid-template-columns:auto 1fr auto;
-    align-items:center;
-    column-gap:24px;
-  }
 
-  .brand{
-    display:flex;
-    align-items:center;
-    gap:16px;
-    min-width:320px;
-  }
-  .brand .logos{
-    display:flex;
-    align-items:center;
-    gap:14px;
-  }
-  .brand .logos img{
-    height:44px;
-  }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-sham.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 
-  nav.main{
-    display:flex;
-    align-items:center;
-    flex-wrap:nowrap;
-    gap:22px;
-    padding-left:10px; /* small air between logos and menu */
-  }
-  nav.main a{
-    color:var(--navy);
-    font:700 13px/1 "Helvetica Neue",Arial,sans-serif;
-    text-transform:uppercase;
-    letter-spacing:.3px;
-    white-space:nowrap;
-  }
-  nav.main a:hover{text-decoration:underline}
-
-  .actions{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    flex-shrink:0;
-  }
-  .actions input{
-    width:260px;
-    height:34px;
-    border:1px solid #c7cbd1;
-    border-radius:2px;
-    padding:0 10px;
-    font-size:14px;
-  }
-  .actions .cta{
-    height:34px;
-    border:0;
-    border-radius:2px;
-    background:var(--gold);
-    font:700 13px/34px Arial,sans-serif;
-    padding:0 14px;
-    cursor:pointer;
-  }
-
-  /* page container + two-column layout */
-  .page{
-    max-width:var(--container);
-    margin:28px auto 0;
-    padding:0 20px 40px;
-    display:grid;
-    grid-template-columns: minmax(0,2.1fr) minmax(0,1fr);
-    gap:48px;
-  }
-
-  /* article */
-  .article h1{
-    color:var(--navy-ink);
-    font-weight:800;
-    font-size:28px;
-    line-height:1.25;
-    margin:0 0 6px;
-  }
-  .article .date{
-    color:var(--muted);
-    font-size:14px;
-    margin:0 0 22px;
-  }
-  .article p{
-    margin:0 0 14px;
-    font-size:17px;
-    line-height:1.7;
-  }
-
-  /* sidebar with vertical rule */
-  .sidebar{
-    position:relative;
-    padding-left:28px;
-  }
-  .sidebar::before{
-    content:"";
-    position:absolute;
-    left:0; top:0; bottom:0;
-    width:1px;
-    background:var(--rule);
-  }
-  .sidebar h3{
-    color:var(--navy-ink);
-    font:800 18px/1.2 Arial,sans-serif;
-    margin:0 0 10px;
-  }
-  .share-icons{
-    display:flex; gap:14px; align-items:center;
-    margin:6px 0 22px;
-  }
-  .share-icons img{height:22px}
-
-  .latest a{
-    display:block;
-    color:var(--link);
-    margin:10px 0;
-    font-size:15px;
-    text-decoration:underline;
-  }
-
-  /* footer */
-  footer{
-    background:var(--navy);
-    color:#fff;
-    margin-top:48px;
-  }
-  .foot-inner{
-    max-width:var(--container);
-    margin:0 auto;
-    padding:22px 20px 26px;
-    text-align:center;
-  }
-  .foot-links{
-    display:flex;
-    flex-wrap:wrap;
-    gap:18px;
-    justify-content:center;
-    margin-bottom:12px;
-  }
-  .foot-links a{
-    color:#fff; font-size:14px;
-  }
-  .foot-meta{
-    font-size:13px; line-height:1.5; opacity:.95;
-  }
-
-  /* basic responsiveness */
-  @media (max-width:1100px){
-    nav.main{gap:16px}
-    .actions input{width:200px}
-  }
-  @media (max-width:900px){
-    .header-inner{
-      grid-template-columns:1fr;
-      row-gap:10px;
+<script>
+  WebFont.load({
+    custom: {
+      families: ['Helvetica Neue', 'Helvetica Neue Bold', 'Helvetica Neue Light', 'Helvetica Neue Medium']
     }
-    .brand{flex-wrap:wrap}
-    .actions{justify-content:flex-start}
-    .page{grid-template-columns:1fr}
-    .sidebar{padding-left:0}
-    .sidebar::before{display:none}
-  }
-</style>
-</head>
-<body>
+  });
 
-  <!-- Utility strip -->
-  <div class="topbar">
-    <div class="inner">
-      <span><b>ALL EMERGENCIES</b> Triple Zero (000)</span>
-      <span><b>ONLINE SERVICES</b> Community Portal</span>
-      <span><b>NON-EMERGENCY</b> 131 444</span>
-      <span><b>CRIME STOPPERS</b> 1800 333 000</span>
+  WebFontConfig = {
+      typekit: { id: 'wez0pvo' }
+   };
+
+   (function(d) {
+      var wf = d.createElement('script'), s = d.scripts[0];
+      wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+      wf.async = true;
+      s.parentNode.insertBefore(wf, s);
+   })(document);
+</script>
+<script src="https://www.google.com/recaptcha/api.js"></script>    <!-- // JS -->
+    <!-- CSS -->
+    
+<link href="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/styles/main.css" rel="stylesheet"/>
+
+
+<link href="https://www.police.nsw.gov.au/_design/css/client_overrides.css" rel="stylesheet"/> <!-- client -->        <!-- // CSS -->
+        
+  
+<!--
+  Running Squiz Matrix
+  Developed by Squiz - http://www.squiz.net
+  Squiz, Squiz Matrix, MySource, MySource Matrix and Squiz.net are registered Trademarks of Squiz Pty Ltd
+  Page generated: 20 August 2025 19:01:07
+-->
+
+
+</head>
+  <!--[if lt IE 7]><body class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+  <!--[if IE 7]><body class="no-js lt-ie9 lt-ie8"><![endif]-->
+  <!--[if IE 8]><body class="no-js lt-ie9"><![endif]-->
+  <!--[if gt IE 8]><!-->
+  <body itemscope itemtype="http://schema.org/WebPage" class="s-news-details" >
+  <!--<![endif]-->
+
+    <!--Google Tag Manager (noscript)-->
+    
+    <div id="page-wrapper" class="o-page-wrapper">
+      <!-- Skip links -->
+      <div id="top" class="skip-links" aria-hidden="true">
+        <ul class="skip-links__list">
+            <li class="skip-links__item"><a class="skip-links__link" href="#main" accesskey="k">Skip to content</a></li>
+            <li class="skip-links__item"><a class="skip-links__link" href="#main-navigation" accesskey="n">Skip to navigation</a></li>
+        </ul>
+      </div>
+      <!-- // Skip links -->
+
+      <div class="o-page-container">
+        <header class="p-header" role="banner">
+          <!-- Contact-panel -->
+          <div id="contact-panel" class="p-contact" style="display: none;">
+    <div class="p-contact__cloase-wrapper o-container">
+        <a href="#contact-panel" class="p-contact__close js-contact-close" role="button"><span class="visuallyhidden">Close</span></a>
+    </div>
+    <div class="o-container">
+        <section class="p-contact__section">
+            <h1 class="e-h3 p-contact__heading">What's the nature of your enquiry?</h1>
+            <div class="p-contact__container">
+                <!-- Start Decision Tree -->
+                <div class="p-contact__item">
+                
+                    <div class="p-decision-tree">
+                        <p>Error: no decision tree source folder detected</p>
+                    </div>
+                
+                </div>
+                <!--// Decision Tree -->
+                <!-- Start Contact Quick Links -->
+                <div class="p-contact__item">
+                    <h2 class="e-h4 p-contact__subheading">Contact quick links</h2><!--Contact Quick Links #468814-->
+<ul class="p-contact__list">
+    <li class="p-contact__list-item">
+    <a class="p-contact__list-link" href="https://www.police.nsw.gov.au/online_services/providing_feedback/feedback_compliments_complaints_and_suggestions/feedback/compliment_a_police_officer">Compliment a Police Officer</a>
+</li><li class="p-contact__list-item">
+    <a class="p-contact__list-link" href="https://www.facebook.com/nswpoliceforce">Social Media </a>
+</li><li class="p-contact__list-item">
+    <a class="p-contact__list-link" href="https://www.police.nsw.gov.au/online_services/providing_feedback/feedback_compliments_complaints_and_suggestions/feedback/how_to_lodge_a_complaint">Complain about a Police Officer</a>
+</li><li class="p-contact__list-item">
+    <a class="p-contact__list-link" href="https://www.police.nsw.gov.au/safety_and_prevention/policing_in_the_community/eyewatch">Eyewatch</a>
+</li><li class="p-contact__list-item">
+    <a class="p-contact__list-link" href="https://portal.police.nsw.gov.au/">Make a Police Report</a>
+</li>
+</ul>
+<!--// Contact Quick Links -->                <!-- // Contact Quick Links -->
+                <!-- Start Contact Phone Numbers -->
+                    <div class="p-contact__panel o-col o-col--3">
+                        <div class="p-contact__panel-item o-col__item">
+                          <div class="p-info-panel">
+                            <div class="p-info-panel__content">
+                              <p class="p-info-panel__subheading">All Emergencies</p>
+                              <h3 class="p-info-panel__heading">
+                                <a href="tel:000">Triple Zero (000)</a>
+                              </h3>
+                              <p class="p-info-panel__info">Police, Fire, Ambulance in an emergency.</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="p-contact__panel-item o-col__item">
+                          <div class="p-info-panel">
+                            <div class="p-info-panel__content">
+                              <p class="p-info-panel__subheading">Non-Emergencies</p>
+                              <h3 class="p-info-panel__heading">
+                                <a href="tel:131444">131 444</a>
+                              </h3>
+                              <p class="p-info-panel__info">For non-urgent police assistance.</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="p-contact__panel-item o-col__item">
+                          <div class="p-info-panel">
+                            <div class="p-info-panel__content">
+                              <p class="p-info-panel__subheading">Crime Stoppers</p>
+                              <h3 class="p-info-panel__heading">
+                                <a href="tel:1800333000">1800 333 000</a>
+                              </h3>
+                              <p class="p-info-panel__info">Report criminal information.</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="p-contact__panel-item o-col__item">
+                          <div class="p-info-panel">
+                            <div class="p-info-panel__content">
+                              <p class="p-info-panel__subheading">Geo Targeting SMS</p>
+                              <h3 class="p-info-panel__heading">
+                                <a href="tel:+61444444444">+61 444 444 444</a>
+                              </h3>
+                              <p class="p-info-panel__info">Details about a high-risk missing person.</p>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                <!-- // Contact Phone Numbers -->
+                </div>
+            </div>
+        </section>
+    </div>
+</div>           <!-- Nest Global Header #463129 -->
+          <!-- start Nested Header #463129 -->
+<div class="p-topnav">
+  <div class="o-container">
+    <div class="p-topnav__container">
+      <div class="p-topnav__lang p-topnav__item">
+          <div id="google_translate_element"><label for="goog-gt-votingInputSrcLang" class="visuallyhidden">Google Translate source language</label><label for="goog-gt-votingInputTrgLang" class="visuallyhidden">Google Translate translated language</label><label for="goog-gt-votingInputVote" class="visuallyhidden">Google Translate input</label><label for="goog-gt-votingInputSrcText" class="visuallyhidden">Google Translate source text</label><label for="goog-gt-votingInputTrgText" class="visuallyhidden">Google Translate translated text</label></div>
+          <script type="text/javascript">
+            function googleTranslateElementInit() {new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.VERTICAL}, 'google_translate_element');}
+          </script>
+          <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      </div>
+      <div class="p-topnav__report p-topnav__item">
+        <a class="p-topnav__link" href="https://portal.police.nsw.gov.au/" target="_blank" accesskey="r">Report a crime online</a>
+      </div>
+      <div class="p-topnav__contact p-topnav__item">
+        <a class="p-topnav__link" href="https://www.police.nsw.gov.au/contact_us" accesskey="c">Contact us</a>
+      </div>
     </div>
   </div>
+</div>
+<!-- // Nested Header -->
 
-  <!-- Header: logos + nav + search/contact IN ONE ROW -->
-  <header>
-    <div class="header-inner">
-      <div class="brand">
-        <div class="logos">
-          <!-- swap these with your files if needed -->
-          <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/NSW_Police_Force_badge.png" alt="NSW Police">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/NSW_Government_Waratah_Logo.svg" alt="NSW Gov">
+<!-- // Adding title to iframe for WCAG error -->
+<script>
+  window.addEventListener('load', function () {
+    const iframes = document.querySelectorAll('iframe');
+    iframes.forEach((iframe) => {
+      if (!iframe.title) {
+        iframe.title = "Google Translate interface";
+      }
+    });
+  });
+</script>
+<!-- // Adding title -->
+          <!-- // Nest Global Header -->
+
+          <div class="o-container">
+            <div class="p-nav">
+              <!-- Site logo -->
+              <div class="p-logo">
+             <!--<a href="https://www.police.nsw.gov.au/home"><img class="p-logo__img" src="https://www.police.nsw.gov.au/__data/assets/file/0005/533777/nswg-nswpf-logo.svg" alt="NSW Police"></a>-->
+                <a href="https://www.police.nsw.gov.au/home" accesskey="h" tabindex="0"><img class="p-logo__img" src="https://www.police.nsw.gov.au/__data/assets/image/0007/834514/NSWG-NSWPF-COL-RGB.png" alt="NSW Police"></a>
+              </div>
+              <div class="p-nav__section">
+                <a href="#" role="button" class="p-nav__close-btn js-menu-btn"><span class="visuallyhidden">Close</span></a>
+                <!-- Header Search -->
+                <div class="p-nav__search">
+    <form action="https://www.police.nsw.gov.au/search" id="cse-search-box1">
+        <div class="p-footer__search-wrapper">
+            <input type="hidden" name="cx" value="007204248513795735356:bfbkhxvpnh4" />
+            <input type="hidden" name="cof" value="FORID:9" />
+            <input type="hidden" name="ie" value="UTF-8" />
+            <label for="query" class="visuallyhidden">Search</label><input type="search" name="q" id="query" class="p-footer__search-input" name="" placeholder="Search our site">
+            <button class="p-footer__search-btn" accesskey="s"><span class="visuallyhidden">Search</span></button>
+        </div>
+    </form>
+</div>                <!-- //Header Search -->
+
+                <!-- Main navigation -->
+                <div class="p-nav__menu">
+                														                  <nav itemscope="" itemtype="http://schema.org/SiteNavigationElement">
+                    <ul class="p-nav__menu-list">
+                                              <li class="p-nav__menu-item  parent">
+                          <a id="nav460994-link" href="https://www.police.nsw.gov.au/news" class="p-nav__menu-link" link-data="#nav460994">
+                            News                          </a>
+                          <!-- Sub mobile navigation menu -->
+                          <ul id="460994" class="p-nav__submenu--mobile">
+                            														                                <li>
+                                  <a href="https://www.police.nsw.gov.au/news/latest_news">
+                                    Latest News                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/news/for_the_record">
+                                    For the Record                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/news/police_assistance_line">
+                                    Police Assistance Line - 131 444                                  </a>
+                                </li>
+                              				                          </ul>
+                          <a href="#460994"  role="button" class="p-nav__menu-arrow js-menu-accordion" aria-label="Toggle menu">
+                            <span>
+                              <svg class="c-icon c-icon--secondary c-icon--12" aria-hidden="true">
+                               <use xlink:href="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/styles/mysource_files/sprite.svg#arrow-down"></use>
+                              </svg>
+                            </span>
+                          </a>
+                          <!-- // Sub mobile navigation menu -->
+                        </li>
+                                              <li class="p-nav__menu-item ">
+                          <a id="nav460998-link" href="https://www.police.nsw.gov.au/online_services" class="p-nav__menu-link" link-data="#nav460998">
+                            Online Services                          </a>
+                          <!-- Sub mobile navigation menu -->
+                          <ul id="460998" class="p-nav__submenu--mobile">
+                            														                                <li>
+                                  <a href="https://www.police.nsw.gov.au/online_services/firearms">
+                                    Firearms Registry                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/online_services/community_portal">
+                                    Community Portal                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/online_services/requesting_information">
+                                    Requesting Information                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/online_services/sled">
+                                    Security Licensing &amp; Enforcement Directorate (SLED)                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/online_services/scrap_metal_industry">
+                                    Scrap Metal Industry                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/online_services/user_charges_user_pays_policing_services">
+                                    User Pays Policing Services                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/online_services/register_my_business_cctv_details">
+                                    Register my business or residential CCTV details                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/online_services/party_safety">
+                                    Party Safety                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/online_services/national_police_check">
+                                    National Police Check                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/online_services/providing_feedback">
+                                    Providing Feedback                                  </a>
+                                </li>
+                              				                          </ul>
+                          <a href="#460998"  role="button" class="p-nav__menu-arrow js-menu-accordion" aria-label="Toggle menu">
+                            <span>
+                              <svg class="c-icon c-icon--secondary c-icon--12" aria-hidden="true">
+                               <use xlink:href="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/styles/mysource_files/sprite.svg#arrow-down"></use>
+                              </svg>
+                            </span>
+                          </a>
+                          <!-- // Sub mobile navigation menu -->
+                        </li>
+                                              <li class="p-nav__menu-item ">
+                          <a id="nav461002-link" href="https://www.police.nsw.gov.au/crime" class="p-nav__menu-link" link-data="#nav461002">
+                            Crime                          </a>
+                          <!-- Sub mobile navigation menu -->
+                          <ul id="461002" class="p-nav__submenu--mobile">
+                            														                                <li>
+                                  <a href="https://www.police.nsw.gov.au/crime/hate_crimes">
+                                    Hate crimes                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/crime/gun_crime">
+                                    Gun crime                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/crime/frauds_and_scams">
+                                    Fraud and Scams                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/crime/terrorism">
+                                    Terrorism                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/crime/domestic_and_family_violence">
+                                    Domestic and Family Violence                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/crime/child_abuse_and_sex_crimes">
+                                    Child Abuse and Sex Crimes                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/crime/drugs_and_alcohol">
+                                    Drugs and Alcohol                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/crime/knife_crime">
+                                    Knife Crime                                  </a>
+                                </li>
+                              				                          </ul>
+                          <a href="#461002"  role="button" class="p-nav__menu-arrow js-menu-accordion" aria-label="Toggle menu">
+                            <span>
+                              <svg class="c-icon c-icon--secondary c-icon--12" aria-hidden="true">
+                               <use xlink:href="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/styles/mysource_files/sprite.svg#arrow-down"></use>
+                              </svg>
+                            </span>
+                          </a>
+                          <!-- // Sub mobile navigation menu -->
+                        </li>
+                                              <li class="p-nav__menu-item ">
+                          <a id="nav461006-link" href="https://www.police.nsw.gov.au/safety_and_prevention" class="p-nav__menu-link" link-data="#nav461006">
+                            Community Safety                          </a>
+                          <!-- Sub mobile navigation menu -->
+                          <ul id="461006" class="p-nav__submenu--mobile">
+                            														                                <li>
+                                  <a href="https://www.police.nsw.gov.au/safety_and_prevention/crime_prevention">
+                                    Crime Prevention                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/safety_and_prevention/your_community">
+                                    Your Community                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/safety_and_prevention/policing_in_the_community">
+                                    Policing in the Community                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/safety_and_prevention/victims_of_crime">
+                                    Victims of Crime                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/safety_and_prevention/emergency_management">
+                                    Emergency Management                                  </a>
+                                </li>
+                              				                          </ul>
+                          <a href="#461006"  role="button" class="p-nav__menu-arrow js-menu-accordion" aria-label="Toggle menu">
+                            <span>
+                              <svg class="c-icon c-icon--secondary c-icon--12" aria-hidden="true">
+                               <use xlink:href="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/styles/mysource_files/sprite.svg#arrow-down"></use>
+                              </svg>
+                            </span>
+                          </a>
+                          <!-- // Sub mobile navigation menu -->
+                        </li>
+                                              <li class="p-nav__menu-item ">
+                          <a id="nav461010-link" href="https://www.police.nsw.gov.au/can_you_help_us" class="p-nav__menu-link" link-data="#nav461010">
+                            Can You Help Us?                          </a>
+                          <!-- Sub mobile navigation menu -->
+                          <ul id="461010" class="p-nav__submenu--mobile">
+                            														                                <li>
+                                  <a href="https://www.police.nsw.gov.au/can_you_help_us/report_information_about_crime_crimestoppers">
+                                    Report Information About Crime (Crime Stoppers)                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/can_you_help_us/missing_persons">
+                                    Missing Persons                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/can_you_help_us/wanted">
+                                    Most Wanted Persons                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/can_you_help_us/rewards">
+                                    Rewards Offered                                  </a>
+                                </li>
+                              				                          </ul>
+                          <a href="#461010"  role="button" class="p-nav__menu-arrow js-menu-accordion" aria-label="Toggle menu">
+                            <span>
+                              <svg class="c-icon c-icon--secondary c-icon--12" aria-hidden="true">
+                               <use xlink:href="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/styles/mysource_files/sprite.svg#arrow-down"></use>
+                              </svg>
+                            </span>
+                          </a>
+                          <!-- // Sub mobile navigation menu -->
+                        </li>
+                                              <li class="p-nav__menu-item ">
+                          <a id="nav461014-link" href="https://www.police.nsw.gov.au/about_us" class="p-nav__menu-link" link-data="#nav461014">
+                            About us                          </a>
+                          <!-- Sub mobile navigation menu -->
+                          <ul id="461014" class="p-nav__submenu--mobile">
+                            														                                <li>
+                                  <a href="https://www.police.nsw.gov.au/about_us/commissioner">
+                                    Commissioner                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/about_us/wellbeing_support_services">
+                                    Wellbeing Support Services                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/about_us/minister_for_police2">
+                                    Minister for Police                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/about_us/recruitment">
+                                    Recruitment                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/about_us/organisational_structure">
+                                    Organisational Structure                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/about_us/police_band">
+                                    Police Band                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/about_us/remembrance_for_fallen_police_officers">
+                                    Remembrance                                   </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/about_us/awards">
+                                    Awards                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/about_us/history">
+                                    History                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/about_us/publications">
+                                    Publications                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/about_us/information_of_interest_to_the_community">
+                                    Information of Interest to the Community                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/about_us/policies_procedures_and_legislation">
+                                    Policies, Procedures and Legislation                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/about_us/regions_commands_districts">
+                                    Regions, Commands, and Districts                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/about_us/career_transition">
+                                    Career Transition                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/about_us/research_with_nsw_police_force">
+                                    External Research                                   </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/about_us/supplier_information">
+                                    Supplier Information                                  </a>
+                                </li>
+                              				                          </ul>
+                          <a href="#461014"  role="button" class="p-nav__menu-arrow js-menu-accordion" aria-label="Toggle menu">
+                            <span>
+                              <svg class="c-icon c-icon--secondary c-icon--12" aria-hidden="true">
+                               <use xlink:href="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/styles/mysource_files/sprite.svg#arrow-down"></use>
+                              </svg>
+                            </span>
+                          </a>
+                          <!-- // Sub mobile navigation menu -->
+                        </li>
+                                              <li class="p-nav__menu-item ">
+                          <a id="nav461019-link" href="https://www.police.nsw.gov.au/recruitment_links" class="p-nav__menu-link" link-data="#nav461019">
+                            Recruitment                          </a>
+                          <!-- Sub mobile navigation menu -->
+                          <ul id="461019" class="p-nav__submenu--mobile">
+                            														                                <li>
+                                  <a href="https://www.police.nsw.gov.au/recruitment_links/police_officers">
+                                    Police Officers                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/recruitment_links/civilian_employees">
+                                    Civilian Employees                                  </a>
+                                </li>
+                                                              <li>
+                                  <a href="https://www.police.nsw.gov.au/recruitment_links/volunteer_in_policing">
+                                    Volunteers In Policing                                  </a>
+                                </li>
+                              				                          </ul>
+                          <a href="#461019"  role="button" class="p-nav__menu-arrow js-menu-accordion" aria-label="Toggle menu">
+                            <span>
+                              <svg class="c-icon c-icon--secondary c-icon--12" aria-hidden="true">
+                               <use xlink:href="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/styles/mysource_files/sprite.svg#arrow-down"></use>
+                              </svg>
+                            </span>
+                          </a>
+                          <!-- // Sub mobile navigation menu -->
+                        </li>
+                                          </ul>
+                  </nav>
+                				                <!-- Desktop mega menu -->
+                <div class="submenu-container">
+                    <!-- Nests Global: Mega Menu - Wrapper (Id: #468271) via ajax -->
+                </div>
+                <!-- // Desktop mega menu -->
+              </div>
+              <!-- // Main navigation -->
+            </div>
+            <!-- Mobile header menu controls -->
+            <div class="p-nav__mobile">
+              <div class="p-nav__mobile-container">
+                <a href="#" role="button" class="p-nav__search-btn js-menu-btn" aria-label="Search">
+                  <span>
+                    <svg class="c-icon c-icon--primary c-icon--22" aria-hidden="true">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/styles/mysource_files/sprite.svg#search"></use>
+                    </svg>
+                  </span>
+                </a>
+                <a href="#" role="button" class="p-nav__nav-btn js-menu-btn" aria-label="Menu">
+                  <span>
+                    <svg class="c-icon c-icon--primary c-icon--28" aria-hidden="true">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/styles/mysource_files/sprite.svg#menu"></use>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+            <!-- // Mobile header menu controls -->
+          </div>
         </div>
 
-        <nav class="main" aria-label="Primary">
-          <a href="#">News</a>
-          <a href="#">Online Services</a>
-          <a href="#">Crime</a>
-          <a href="#">Community Safety</a>
-          <a href="#">Can You Help Us?</a>
-          <a href="#">About Us</a>
-          <a href="#">Recruitment</a>
-        </nav>
-      </div>
+        <!--Home / Default Banner Section diplay by if condition-->
 
-      <div class="actions">
-        <input type="search" placeholder="Search our site" aria-label="Search" />
-        <button class="cta">CONTACT US</button>
-      </div>
+        <!--predefine global contact number-->
+                        <!--Breadcrumb-->
+        
+        <!--Show banner section by condition-->
+                       <div class="p-hero p-hero--small p-hero p-hero--animation">
+                 <div class="p-hero__container">
+                  <div class="o-container">
+                       <!--global nested contact number #468401-->
+                     <div class="p-hero__content-bottom">
+        <div class="p-info-panel__wrapper o-col o-col--4 no-gutters">
+          <div class="o-col__item">
+            <div class="p-info-panel p-info-panel--dark">
+              <div class="p-info-panel__content">
+                <p class="p-info-panel__subheading">All Emergencies</p>
+                <h3 class="p-info-panel__heading">
+                  <a href="tel:000">Triple Zero (000)</a>
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div class="o-col__item">
+            <div class="p-info-panel p-info-panel--dark" style="padding:15px 0 15px;">
+              <div class="p-info-panel__content">
+                <p class="p-info-panel__subheading">Online Services</p>
+                <h3 class="p-info-panel__heading">
+                  <a href="https://www.police.nsw.gov.au/community_portal/log_in">Community Portal</a>
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div class="o-col__item">
+            <div class="p-info-panel p-info-panel--dark">
+              <div class="p-info-panel__content">
+                <p class="p-info-panel__subheading">Non-Emergency</p>
+                <h3 class="p-info-panel__heading">
+                  <a href="tel:131444">131 444</a>
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div class="o-col__item">
+            <div class="p-info-panel p-info-panel--dark">
+              <div class="p-info-panel__content">
+                <p class="p-info-panel__subheading">Crime Stoppers</p>
+                <h3 class="p-info-panel__heading">
+                  <a href="tel:1800333000">1800 333 000</a>
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>                  </div>
+                 </div>
+                 <div class="p-hero__inner">
+                    <div class="p-hero__img-wrapper c-cssfilter c-cssfilter--dark">
+                        <div class="c-cssfilter__overlay"></div>
+                        <!-- start Global Page Banner #464331 -->
+
+  <img class="p-hero__img c-objectfit c-cssfilter__img" src="https://www.police.nsw.gov.au/__data/assets/image/0004/884506/lgbtiq-plus-website-cover-photo.jpg" alt="LGBTIQ+ website cover photo" />
+
+<!-- // Global Page Banner -->                    </div>
+                    <div class="o-container">
+                      <div class="p-hero__content">
+                        <div class="p-hero__intro">
+                          <!--breadcrumbs-->
+                                    <nav class="breadcrumbs">
+            <p id="breadcrumb__label" class="visuallyhidden">You are here:</p>
+            <ol class="breadcrumbs__list" aria-labelledby="breadcrumb__label" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                <a href="https://www.police.nsw.gov.au/home" class="breadcrumbs__link" itemprop="item">
+                  <span itemprop="name">Home</span>
+                </a>
+              </li>
+                              <span class="breadcrumbs__divider" aria-hidden="true">&Gt;</span>
+                <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                  <a href="https://www.police.nsw.gov.au/news" class="breadcrumbs__link" itemprop="item">
+                    <span itemprop="name">News</span>
+                  </a>
+                </li>
+                          </ol>
+          </nav>
+                                </div>
+                        <h3 class="p-hero__heading">Latest News</h3>
+                      </div>
+                    </div>
+                 </div>
+               </div>
+                  </header>
+
+      <main class="o-main" role="main" id="main" itemscope="" itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
+        <article role="article" itemscope="" itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
+          <div class="o-container"> <!-- Depending on the page, no class may be needed set up by metadata-->
+            <div class="o-layout o-layout--2col-right">
+              <div class="o-content" itemprop="articleBody">
+                <!-- Hidden light box content - start -->
+                <!-- <div class="feedback_survey" data-survey-url="?SQ_DESIGN_NAME=blank&SQ_PAINT_LAYOUT_NAME=blank" data-survey-delay=""></div>
+<a class="popup-with-form" href="#lightbox-feedback-survey" id="feedback-survey-trigger"></a>
+<div id="lightbox-feedback-survey" class="white-popup-block mfp-hide">
+   <div class="lightbox__content">
+   </div>
+</div> -->                <!-- Hidden light box content - end -->
+                <!-- Print body -->
+                <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Untitled</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</head>
+<body>
+<h1>Man charged after alleged sexual assault - Tamworth</h1><p><em>Wednesday, 20 August 2025 06:37:45 PM</em></p>
+<p><p class="xmsonormal">A man will face court charged after an investigation into alleged sexual offences in the state&rsquo;s west.</p>
+<p class="xmsonormal"> </p>
+<p class="xmsonormal"><span>On Friday 25 July 2025, officers attached to Oxley Police District commenced an investigation after reports a 21-year-old woman &ndash; who was a customer &ndash; was allegedly inappropriately touched before she was sexually assaulted at a business on Peel Street, Tamworth.</span></p>
+<p class="xmsonormal"> </p>
+<p class="xmsonormal"><span>Police were told a male employee allegedly touched the woman inappropriately before sexually assaulting her.</span></p>
+<p class="xmsonormal"> </p>
+<p class="xmsonormal"><span>Following inquires, about 8.30am yesterday (Monday 19 August 2025), police arrested a 31-year-old at a home in Oxley Vale.</span></p>
+<p class="xmsonormal"> </p>
+<p class="xmsonormal"><span>He was taken to Tamworth Police Station and charged with sexually touch another person without consent and sexual intercourse without consent.</span></p>
+<p class="xmsonormal"> </p>
+<p class="xmsonormal"><span>He was granted conditional bail to appear at Tamworth Local Court on Monday 1 September 2025.</span></p></p>
+</body>
+</html>
+                <button href="#" onclick="topFunction()" id="back-to-top" class="go-top" title="Go to top">^</button>
+                <!-- // Print body -->
+              </div>
+              <!-- /.o-cotent-->
+              <!-- RHC Navigation -->
+              <aside class="o-aside " role="complementary">
+
+                <!-- RHC Share Tools default setting no print #462955 -->
+                <style>.share ul{display:flex;flex-direction:row;justify-content:space-between;margin:0;padding:0}.share li::before{display:none!important}.share img{--size:3em;width:var(--size);height:var(--size)}.shorturl{cursor:pointer;--copied-animation:undefined;--copied-z-index:-1}.shorturl.copied{--copied-animation:copied 1.5s ease-out;--copied-z-index:2}.shorturl::before{content:'Copied';position:absolute;transform:translate(-50%,-50%);left:50%;padding:.5em;font-size:.9em;border-radius:10%;z-index:var(--copied-z-index);background:#d3d3d3;opacity:0;animation:var(--copied-animation)}@keyframes copied{from{opacity:0;transform:translate(-50%,-50%)}15%{transform:translate(-50%,-125%)}20%{opacity:100%}80%{opacity:100%}to{opacity:0;transform:translate(-50%,-125%)}}</style><div class="share"><h4>Share this</h4><ul><li><a class="facebook" target="_blank"><img src="https://www.police.nsw.gov.au/__data/assets/file/0015/724200/icon-facebook-32.svg" alt="Share to Facebook"></a></li><li><a class="twitter" target="_blank"><img src="https://www.police.nsw.gov.au/__data/assets/file/0007/858697/icon-x-32.svg" alt="Share to X"></a></li><li><a class="email"><img src="https://www.police.nsw.gov.au/__data/assets/file/0016/724201/icon-email-32.svg" alt="Share via Email"></a></li><li><a class="shorturl"><img src="https://www.police.nsw.gov.au/__data/assets/file/0017/724202/icon-link-32.svg" alt="Copy short URL" title="Copy short URL"></a></li></ul></div><script>(()=>{const e=decodeURIComponent(location.search.replace(/\?sq_content_src=%2B([^&]+)$/, "$1")),t=atob(e).match(/\d{5,6}/g)[0],o=encodeURI(document.querySelector(".o-content > h1").innerText),r=()=>{let e;const t=["editor","note:","hightail","http","pronunciation","pronounced"],o=(e,t)=>new RegExp(t,"gi").test(e);for(i=5;i++&&(!(e=document.querySelector(`.o-content > p:nth-child(${i})`)?.innerText)||t.some(t=>o(e,t)));i<=10);return encodeURI(e)},c=encodeURI([...document.querySelectorAll(".o-content > p")].map(e=>e.innerText).join("\n")),n=new Map;n.set("shorturl",`https://www.police.nsw.gov.au/news/article?id=${t}`),n.set("facebook",`https://facebook.com/sharer/sharer.php?u=${location}`),n.set("twitter",`https://twitter.com/intent/tweet?text=${r()} ${n.get("shorturl")} %23NSWPF`),n.set("email",`mailto:?subject=NSW%20Police%20Force%3A%20${o}&body=${c}%0A%0A${n.get("shorturl")}`),n.forEach((e,t)=>{"shorturl"!==t&&(document.querySelector(`.${t}`).href=e)});const s=document.querySelector(".shorturl");s.addEventListener("click",()=>{navigator.clipboard.writeText(n.get("shorturl")),s.classList.add("copied");const e=setTimeout(()=>{s.classList.remove("copied"),window.clearTimeout(e)},1500)})})();const removeFigCaption=setInterval(()=>{document.querySelector("figcaption")&&(document.querySelector("figcaption").remove(),window.clearTimeout(removeFigCaption))},100);</script>                <!-- // RHC Share Tools -->
+
+                <div class="c-section-nav">
+                  <!-- RHC Navigation Heading -->
+                  <div class="c-section-nav__title" asset-id="464055">
+                    <h2 class="c-section-nav__title" asset-id="464055">Latest News</h2>
+                    <a role="button" href="#" class="js-close-section-nav" aria-label="Close section nav">
+                        <svg class="c-icon c-icon--primary c-icon--18">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/styles/mysource_files/sprite.svg#arrow-down"></use>
+                        </svg>
+                    </a>
+                  </div>
+                  <!-- // RHC Navigation Heading -->
+                  <!-- RHC Navigation Items -->
+                  																		                 <!-- // RHC Navigation Items -->
+                </div>
+              </aside>
+              <!-- // RHC Navigation -->
+            </div>
+          </div>
+        </article>
+      </main>
+
+      <!-- Nest Global Footer #463138 -->
+      <!-- start Nested Footer #463138 -->
+<footer class="p-footer" role="contentinfo">
+    <div class="o-container"> 
+        <div class="p-footer__container">
+
+            <!-- start Footer Social Links -->
+            <div class="p-footer__item p-footer__social">
+                <div class="p-footer__social-item">
+                  Follow us:
+                </div>
+                <div class="p-footer__social-item">
+                  <a href="//www.facebook.com/nswpoliceforce/"><img class="p-footer__social-img" src="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/mysource_files/ico-facebook.svg" alt="Facebook" /></a>
+                </div>
+                <div class="p-footer__social-item">
+                  <a href="//twitter.com/nswpolice"><img class="p-footer__social-img" src="https://www.police.nsw.gov.au/__data/assets/file/0007/858688/ico-x.svg" alt="X" /></a>
+                </div>
+                <div class="p-footer__social-item">
+                  <a href="//www.instagram.com/nswpolice/"><img class="p-footer__social-img" src="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/mysource_files/ico-insta.svg" alt="Instagram" /></a>
+                </div>
+                <div class="p-footer__social-item">
+                  <a href="//www.youtube.com/user/TheNSWPolice"><img class="p-footer__social-img" src="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/mysource_files/ico-youtube.svg" alt="Youtube" /></a>
+                </div>
+                <div class="p-footer__social-item">
+                  <a href="//www.linkedin.com/company/nsw-police-force"><img class="p-footer__social-img" src="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/mysource_files/ico-linkedin.svg" alt="Linked In" /></a>
+                </div>
+                <div class="p-footer__social-item">
+                  <a href="//www.tiktok.com/@nswpolice"><img class="p-footer__social-img" src="https://www.police.nsw.gov.au/__data/assets/file/0003/807321/ico-tiktok.svg" alt="TikTok" /></a>
+                </div>
+            </div>
+            <!-- // Footer Social Links -->
+            
+            <!-- start Footer Search -->
+            <div class="p-footer__item p-footer__search">
+                <form action="https://www.police.nsw.gov.au/search" id="cse-search-box2">
+                  <div class="p-footer__search-wrapper">
+                    <input type="hidden" name="cx" value="007204248513795735356:bfbkhxvpnh4" />
+                    <input type="hidden" name="cof" value="FORID:9" />
+                    <input type="hidden" name="ie" value="UTF-8" />
+                    <label for="query2" class="visuallyhidden">Search</label><input type="search" name="q" id="query2" class="p-footer__search-input" name="" placeholder="Search our site">
+                    <button class="p-footer__search-btn"><span class="visuallyhidden">Search</span></button>
+                  </div>
+                </form>
+            </div>
+            <!-- // Footer Search -->
+            
+            <!-- start Footer Address -->
+            <div class="p-footer__item p-footer__address">
+                <div class="p-footer__address-item">
+                    <h2 class="p-footer__address-heading">NSW Police Force HQ</h2>
+                    <p class="p-footer__address-txt">
+                        1 Charles Street<br />
+                        Parramatta, NSW 2150
+                    </p>
+                </div>
+                <div class="p-footer__address-item">
+                    <h2 class="p-footer__address-heading">Postal Address</h2>
+                    <p class="p-footer__address-txt">
+                        Locked Bag 5102<br />
+                        Parramatta, NSW 2124
+                    </p>
+                </div>
+            </div>
+            <!-- // Footer Address --><div class="p-footer__item p-footer__menu">
+  <ul class="p-footer__menu-list">
+    <li class="p-footer__menu-item">
+    <a class="p-footer__menu-link" href="https://www.police.nsw.gov.au/news">News</a>
+</li><li class="p-footer__menu-item">
+    <a class="p-footer__menu-link" href="https://www.police.nsw.gov.au/safety_and_prevention">Community Safety</a>
+</li><li class="p-footer__menu-item">
+    <a class="p-footer__menu-link" href="https://www.police.nsw.gov.au/contact_us">Contact Us</a>
+</li><li class="p-footer__menu-item">
+    <a class="p-footer__menu-link" href="https://www.police.nsw.gov.au/online_services">Online Services</a>
+</li><li class="p-footer__menu-item">
+    <a class="p-footer__menu-link" href="https://www.police.nsw.gov.au/can_you_help_us">Can You Help Us?</a>
+</li><li class="p-footer__menu-item">
+    <a class="p-footer__menu-link" href="https://www.police.nsw.gov.au/recruitment_links">Recruitment</a>
+</li><li class="p-footer__menu-item">
+    <a class="p-footer__menu-link" href="https://www.police.nsw.gov.au/crime">Crime</a>
+</li><li class="p-footer__menu-item">
+    <a class="p-footer__menu-link" href="https://www.police.nsw.gov.au/about_us">About Us</a>
+</li>
+  </ul>
+</div>
+            <!-- start Utility links -->
+            <div class="p-footer__item p-footer__menu--small">
+                <ul class="p-footer__menu-list">
+                    <li class="p-footer__menu-item"><a class="p-footer__menu-link" href="https://www.police.nsw.gov.au/accessibility">Accessibility</a></li>
+                    <li class="p-footer__menu-item"><a class="p-footer__menu-link" href="https://www.police.nsw.gov.au/copyright_and_disclaimer">Copyright &amp; Disclaimer</a></li>
+                    <li class="p-footer__menu-item"><a class="p-footer__menu-link" href="https://www.police.nsw.gov.au/privacy">Privacy</a></li>
+                    <li class="p-footer__menu-item"><a class="p-footer__menu-link" href="https://www.police.nsw.gov.au/registered_users">Registered Users</a></li>
+                </ul>
+            </div>
+            <!-- // Utility links -->
+
+            <!-- start Copyright -->
+            <div class="p-footer__item p-footer__copyright">
+                All contents &copy; Copyright Government of New South Wales. All rights reserved.
+            </div>
+            <!-- // Copyright -->
+        </div>
     </div>
-  </header>
-
-  <!-- Main content -->
-  <main class="page">
-    <article class="article">
-      <h1>Missing group located safe - Catherine Hill Bay</h1>
-      <p class="date">Sunday, 17 August 2025 09:50:50 AM</p>
-
-      <p>Four women who were reported as possibly missing after they were seen stranded on rocks at Catherine Hill Bay have been located safe.</p>
-      <p>About 1.40pm (Saturday 16 August 2025), officers from Lake Macquarie Police District were called to rocks south of Catherine Hill Bay Beach, following reports four females were seen on the rocks about 1pm, before the tide came in and they could no longer be seen.</p>
-      <p>A search operation commenced, including local police, officers from Marine Area Command, and the Westpac helicopter; however, the group could not be located.</p>
-      <p>Following ongoing inquiries, including a public appeal for information, one of the four women contacted police and notified them that they were safe.</p>
-      <p>Police would like to thank the public and media for their assistance.</p>
-    </article>
-
-    <aside class="sidebar" aria-label="Sidebar">
-      <h3>Share</h3>
-      <div class="share-icons">
-        <!-- simple placeholder icons; replace with your SVGs if you like -->
-        <img src="https://img.icons8.com/ios-filled/50/000000/facebook--v1.png" alt="Facebook">
-        <img src="https://img.icons8.com/ios-filled/50/000000/twitter.png" alt="Twitter">
-        <img src="https://img.icons8.com/ios-filled/50/000000/filled-message.png" alt="Email">
-      </div>
-
-      <div class="latest">
-        <h3>Latest News</h3>
-        <a href="#">Police operation concludes - Sydney CBD</a>
-        <a href="#">Appeal to locate missing teen - Newcastle</a>
-        <a href="#">Man charged following pursuit - Western Sydney</a>
-        <a href="#">Community safety campaign launches - Statewide</a>
-      </div>
-    </aside>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <div class="foot-inner">
-      <div class="foot-links">
-        <a href="#">News</a>
-        <a href="#">Community Safety</a>
-        <a href="#">Contact Us</a>
-        <a href="#">Recruitment</a>
-        <a href="#">Online Services</a>
-        <a href="#">About Us</a>
-        <a href="#">Crime</a>
-      </div>
-      <div class="foot-meta">
-        NSW Police Force HQ, 1 Charles Street, Parramatta, NSW 2150<br>
-        Postal Address: Locked Bag 5102, Parramatta, NSW 2124<br>
-        © Government of New South Wales. All rights reserved.
-      </div>
+</footer>
+<!-- // Nested Footer -->      <!-- // Nest Global Footer -->
     </div>
-  </footer>
+  </div>
+  <!-- Footer Script -->
+  
+<script src="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/js/vendor/jquery.min.js"></script>     <!-- jQuery.min.js -->
+<script src="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/js/plugins.min.js"></script>     <!-- plugins.min.js -->
+<script src="https://www.police.nsw.gov.au/__data/assets/git_bridge/0011/469334/matrix-files/js/global.js"></script>     <!-- global.js -->
+
+
+<script src="https://www.police.nsw.gov.au/__data/assets/js_file/0003/472116/client.js"></script>     <!-- client.js -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58edd1a693c593fa"></script>   <!-- // Footer Script -->
+
+  
 
 </body>
 </html>
