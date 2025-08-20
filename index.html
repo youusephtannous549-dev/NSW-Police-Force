@@ -2,332 +2,98 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>NSW Police Force - Latest News</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  <title>News Article</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Roboto', Arial, sans-serif;
-      color: #222;
+      font-family: "Helvetica Neue", Arial, sans-serif;
       background: #fff;
-    }
-
-    /* Top bar */
-    .topbar {
-      background: #0b2857;
-      color: white;
-      font-size: 14px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 6px 30px;
-    }
-    .topbar a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: 500;
-    }
-    .topbar .btn {
-      background: #fbc02d;
-      color: #000;
-      padding: 6px 14px;
-      border-radius: 3px;
-      margin-left: 15px;
-      font-weight: bold;
+      color: #222;
+      line-height: 1.7;
     }
 
     /* Header */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 30px;
-      flex-wrap: wrap;
-    }
-    .header img {
-      height: 70px;
-    }
-
-    /* Navigation */
-    nav {
-      background: #0b2857;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-      flex-wrap: wrap;
-    }
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .nav-links a {
+    header {
+      background: #0c1a36; /* extracted dark navy */
       color: white;
-      text-decoration: none;
-      padding: 14px 18px;
-      display: block;
-      font-weight: 500;
-      font-size: 15px;
-      text-transform: uppercase;
-    }
-    .nav-links a:hover {
-      background: #163873;
-    }
-
-    /* Search */
-    .search {
-      display: flex;
-      align-items: center;
-      margin-left: auto;
-    }
-    .search input {
-      padding: 6px 10px;
-      border: none;
-      border-radius: 3px 0 0 3px;
-      outline: none;
-    }
-    .search button {
-      background: #fbc02d;
-      border: none;
-      padding: 6px 10px;
-      border-radius: 0 3px 3px 0;
-      cursor: pointer;
-    }
-
-    /* Emergency bar */
-    .emergency-bar {
-      background: #142d63;
-      color: white;
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      padding: 10px;
-      font-size: 14px;
-      text-align: center;
-    }
-    .emergency-bar strong {
-      display: block;
-      font-size: 16px;
-      font-weight: 700;
-    }
-
-    /* Banner */
-    .banner {
-      background: #0b2857;
-      color: white;
-      text-align: center;
-      padding: 70px 20px;
-      font-size: 40px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    /* Main Content */
-    .content {
-      display: flex;
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    .article {
-      flex: 3;
-    }
-    .article h1 {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .article time {
-      color: #666;
-      font-size: 14px;
-      display: block;
-      margin-bottom: 20px;
-    }
-    .article p {
-      line-height: 1.7;
-      margin-bottom: 18px;
-      font-size: 16px;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      flex: 1;
-      margin-left: 40px;
-    }
-    .sidebar h3 {
-      font-size: 18px;
-      border-bottom: 3px solid #ddd;
-      padding-bottom: 6px;
-      margin-bottom: 16px;
-    }
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .sidebar ul li {
-      margin-bottom: 14px;
-    }
-    .sidebar ul li a {
-      text-decoration: none;
-      color: #0b2857;
-      font-weight: 500;
-    }
-    .sidebar ul li a:hover {
-      text-decoration: underline;
-    }
-
-    /* Social Share */
-    .share {
-      margin: 25px 0;
-    }
-    .share strong {
-      display: block;
-      margin-bottom: 10px;
-    }
-    .share a {
-      margin-right: 12px;
+      padding: 18px 40px;
       font-size: 20px;
-      text-decoration: none;
-      color: #0b2857;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
-    .share a:hover {
-      color: #163873;
+
+    /* Article Container */
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      padding: 0 25px;
+    }
+
+    .headline {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 38px;
+      font-weight: bold;
+      line-height: 1.3;
+      margin-bottom: 15px;
+      color: #111;
+    }
+
+    .meta {
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 25px;
+      font-style: italic;
+    }
+
+    .hero {
+      width: 100%;
+      height: auto;
+      max-height: 420px;
+      object-fit: cover;
+      margin-bottom: 25px;
+      border-radius: 4px;
+    }
+
+    .content p {
+      margin-bottom: 22px;
+      font-size: 17px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
     }
 
     /* Footer */
     footer {
-      background: #0b2857;
-      color: white;
-      padding: 40px 20px;
-      font-size: 14px;
-    }
-    footer .links {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 25px;
-    }
-    footer .links a {
-      color: white;
-      text-decoration: none;
-      margin: 0 14px 10px;
-      font-weight: 500;
-    }
-    footer .links a:hover {
-      text-decoration: underline;
-    }
-    footer .address {
+      margin-top: 50px;
+      padding: 20px;
       text-align: center;
-      line-height: 1.6;
+      font-size: 14px;
+      color: #777;
+      border-top: 1px solid #ddd;
     }
   </style>
 </head>
 <body>
+  <header>
+    NSW News Daily
+  </header>
 
-  <!-- Topbar -->
-  <div class="topbar">
-    <a href="#"><i class="fa-solid fa-file-alt"></i> REPORT A CRIME ONLINE</a>
-    <a href="#" class="btn"><i class="fa-solid fa-phone"></i> CONTACT US</a>
-  </div>
+  <div class="container">
+    <h1 class="headline">Major Operation Conducted in Sydney’s CBD</h1>
+    <div class="meta">August 17, 2025 · Crime & Justice · By Staff Reporter</div>
 
-  <!-- Header -->
-  <div class="header">
-    <img src="https://upload.wikimedia.org/wikipedia/en/7/78/New_South_Wales_Police_Force_logo.png" alt="NSW Police Force Logo">
-    <img src="https://www.nsw.gov.au/sites/default/files/styles/og_image/public/2020-07/NSW-Government-logo.png" alt="NSW Government Logo" height="70">
-  </div>
+    <img src="https://via.placeholder.com/900x420" alt="News Image" class="hero">
 
-  <!-- Nav -->
-  <nav>
-    <div class="nav-links">
-      <a href="#">News</a>
-      <a href="#">Online Services</a>
-      <a href="#">Crime</a>
-      <a href="#">Community Safety</a>
-      <a href="#">Can You Help Us?</a>
-      <a href="#">About Us</a>
-      <a href="#">Recruitment</a>
+    <div class="content">
+      <p>Authorities conducted a major operation in Sydney’s CBD earlier today following reports of a disturbance inside a busy café. Police confirmed that the situation was resolved without any serious injuries.</p>
+
+      <p>Eyewitnesses described chaotic scenes as customers were evacuated from the area. Officers acted swiftly to ensure the safety of all civilians.</p>
+
+      <p>The suspect, described as a man known to police, was taken into custody at the scene. Further investigations are ongoing.</p>
     </div>
-    <div class="search">
-      <input type="text" placeholder="Search...">
-      <button><i class="fa fa-search"></i></button>
-    </div>
-  </nav>
-
-  <!-- Emergency Bar -->
-  <div class="emergency-bar">
-    <div><strong>Triple Zero (000)</strong> ALL EMERGENCIES</div>
-    <div><strong>Community Portal</strong> ONLINE SERVICES</div>
-    <div><strong>131 444</strong> NON-EMERGENCY</div>
-    <div><strong>1800 333 000</strong> CRIME STOPPERS</div>
   </div>
 
-  <!-- Banner -->
-  <div class="banner">
-    Latest News
-  </div>
-
-  <!-- Content -->
-  <div class="content">
-    <div class="article">
-      <h1>Missing group located safe - Catherine Hill Bay</h1>
-      <time>Sunday, 17 August 2025 09:50:50 AM</time>
-
-      <p>Four women who were reported as possibly missing after they were seen stranded on rocks at Catherine Hill Bay have been located safe.</p>
-      <p>About 1.40pm (Saturday 16 August 2025), officers from Lake Macquarie Police District were called to rocks south of Catherine Hill Bay Beach, following reports four females were seen on the rocks about 1pm, before the tide came in and they could no longer be seen.</p>
-      <p>A search operation commenced, including local police, officers from Marine Area Command, and the Westpac helicopter; however, the group could not be located.</p>
-      <p>Following ongoing inquiries, including a public appeal for information, one of the four women contacted police and notified them that they were safe.</p>
-      <p>Police would like to thank the public and media for their assistance.</p>
-
-      <div class="share">
-        <strong>Share this</strong>
-        <a href="#"><i class="fa-solid fa-link"></i></a>
-        <a href="#"><i class="fa-solid fa-envelope"></i></a>
-        <a href="#"><i class="fa-brands fa-facebook"></i></a>
-        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-      </div>
-    </div>
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <h3>Latest News</h3>
-      <ul>
-        <li><a href="#">Police appeal after robbery in Sydney’s Inner West</a></li>
-        <li><a href="#">Man charged following investigation into fraud scheme</a></li>
-        <li><a href="#">Search continues for missing bushwalker in Blue Mountains</a></li>
-        <li><a href="#">Community urged to stay vigilant after scam reports rise</a></li>
-        <li><a href="#">Two arrested after large drug seizure in Western Sydney</a></li>
-      </ul>
-    </aside>
-  </div>
-
-  <!-- Footer -->
   <footer>
-    <div class="links">
-      <a href="#">News</a>
-      <a href="#">Community Safety</a>
-      <a href="#">Contact Us</a>
-      <a href="#">Recruitment</a>
-      <a href="#">Online Services</a>
-      <a href="#">Can You Help Us?</a>
-      <a href="#">About Us</a>
-      <a href="#">Crime</a>
-    </div>
-
-    <div class="address">
-      <p>NSW Police Force HQ<br>1 Charles Street, Parramatta, NSW 2150</p>
-      <p>Postal Address: Locked Bag 5102, Parramatta, NSW 2124</p>
-      <p>© Government of New South Wales. All rights reserved.</p>
-    </div>
+    © 2025 NSW News Daily. All Rights Reserved.
   </footer>
-
 </body>
 </html>
