@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NSW Police Website Replica</title>
+  <title>NSW Police Replica</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -17,11 +17,11 @@
 
   <!-- Header -->
   <header class="header-row">
-    <div class="left-header">
-      <div class="logos">
-        <img src="nswpolice-logo.png" alt="NSW Police Logo">
-        <img src="nswgov-logo.png" alt="NSW Gov Logo">
-      </div>
+    <!-- Left: Logos + Nav all in one row -->
+    <div class="logos-nav">
+      <img src="nswpolice-logo.png" alt="NSW Police Logo" class="logo">
+      <img src="nswgov-logo.png" alt="NSW Gov Logo" class="logo">
+
       <nav>
         <a href="#">News</a>
         <a href="#">Online Services</a>
@@ -33,6 +33,7 @@
       </nav>
     </div>
 
+    <!-- Right: Search + Contact -->
     <div class="search-contact">
       <input type="text" placeholder="Search our site">
       <button>CONTACT US</button>
@@ -41,7 +42,6 @@
 
   <!-- Main Layout -->
   <main class="main-layout">
-    <!-- Article -->
     <article class="content">
       <h2>Missing group located safe - Catherine Hill Bay</h2>
       <p class="date">Sunday, 17 August 2025 09:50:50 AM</p>
@@ -65,7 +65,6 @@
       <p>Police would like to thank the public and media for their assistance.</p>
     </article>
 
-    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="share-box">
         <h3>Share</h3>
