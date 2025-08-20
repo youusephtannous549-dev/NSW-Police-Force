@@ -1,0 +1,171 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: #fff;
+  color: #000;
+}
+
+/* Top Bar */
+.top-bar {
+  background: #00174F;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 20px;
+  font-size: 12px;
+}
+
+/* Header */
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.left-header {
+  display: flex;
+  align-items: center;
+}
+
+.logos {
+  display: flex;
+  align-items: center;
+  margin-right: 24px;
+}
+
+.logos img {
+  height: 48px;
+  margin-right: 12px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  color: #00174F;
+  margin-right: 22px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.search-contact {
+  display: flex;
+  align-items: center;
+}
+
+.search-contact input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  margin-right: 8px;
+}
+
+.search-contact button {
+  background: #f4c542;
+  border: none;
+  padding: 8px 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Main Layout */
+.main-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.content h2 {
+  color: #00174F;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.content .date {
+  font-size: 13px;
+  color: gray;
+  margin-bottom: 16px;
+}
+
+/* Sidebar */
+.sidebar {
+  border-left: 1px solid #ddd;
+  padding-left: 20px;
+}
+
+.share-box, .latest-news {
+  margin-bottom: 30px;
+}
+
+.share-box h3,
+.latest-news h3 {
+  color: #00174F;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.icons img {
+  height: 24px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.latest-news ul {
+  list-style: none;
+}
+
+.latest-news li {
+  margin-bottom: 10px;
+}
+
+.latest-news a {
+  color: #00174F;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.latest-news a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  background: #00174F;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+}
+
+.footer-links {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  font-size: 12px;
+}
+.footer-links a:hover {
+  text-decoration: underline;
+}
